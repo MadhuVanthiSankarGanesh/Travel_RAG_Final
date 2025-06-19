@@ -141,9 +141,9 @@ Travel_RAG_Final/
 ---
 
 ## Contact & License
-- **Author:** [Your Name or GitHub]
-- **Email:** [your@email.com]
-- **Issues:** [GitHub Issues](https://github.com/your-repo/issues)
+- **Author:** [Madhu Vanthi Sankar Ganesh]
+- **Email:** [madhuvanthi31sankarganesh@gmail.com]
+
 
 ---
 
