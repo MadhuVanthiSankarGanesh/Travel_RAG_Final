@@ -1,0 +1,1 @@
+{"indexed_fields":{"type":"keyword","features":"keyword","county":"keyword","region":"keyword","tourism_related":"bool","attraction_category":"keyword","location_type":"keyword"},"skip_rocksdb":null}

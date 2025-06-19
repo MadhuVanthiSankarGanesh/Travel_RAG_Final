@@ -1,0 +1,1 @@
+{"schema":{"location_type":"keyword","region":"keyword","county":"keyword","features":"keyword","type":"keyword","tourism_related":"bool","attraction_category":"keyword"}}
