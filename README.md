@@ -1,25 +1,24 @@
-# Travel RAG: Ireland Travel Planner
+# Travel RAG: Ireland Travel Planner (Dockerized)
 
-A full-stack AI-powered travel planning application for Ireland, featuring:
-- **FastAPI backend** with LLM (Ollama/Mistral) for itinerary generation
-- **Booking.com RapidAPI** integration for real-time hotel and flight search
-- **React frontend** for interactive trip planning and chat
-- **Qdrant vector database** for semantic search and RAG
+A full-stack AI-powered travel planning application for Ireland, containerized for easy deployment with Docker and Docker Compose.
 
 ---
 
 ## Features
-- Generate detailed, day-by-day Ireland itineraries using LLMs
-- Synchronous and background hotel/flight search (Booking.com RapidAPI)
+- Generate detailed, day-by-day Ireland itineraries using LLMs (Ollama/Mistral)
+- Real-time hotel and flight search via Booking.com RapidAPI
 - Chat interface for follow-up questions about your trip
-- State persistence (localStorage) for itinerary, flights, and hotels
-- Modern, responsive React UI
+- Qdrant vector database for semantic search and RAG
+- Modern React frontend
+- Fully containerized: run everything with Docker Compose
 
 ---
 
 ## Architecture
 ```
 [React Frontend]  <---->  [FastAPI Backend]  <---->  [Ollama LLM | Booking.com API | Qdrant]
+        |                        |                        |
+     Docker                  Docker                   Docker
 ```
 - **Frontend:** `client/` (React, TypeScript, MUI)
 - **Backend:** `api/app/` (FastAPI, Python)
@@ -28,50 +27,92 @@ A full-stack AI-powered travel planning application for Ireland, featuring:
 
 ---
 
-## Quick Start (Local)
+## Quick Start: Docker Compose
 
-### 1. Backend (FastAPI)
+### 1. Prerequisites
+- [Docker](https://www.docker.com/get-started)
+- [Docker Compose](https://docs.docker.com/compose/)
+
+### 2. Clone the Repository
 ```bash
-cd api/app
-python -m venv venv
-source venv/bin/activate  # or venv\Scripts\activate on Windows
-pip install -r ../requirements.txt
-uvicorn main:app --reload
+git clone https://github.com/your-repo/Travel_RAG_Final.git
+cd Travel_RAG_Final
 ```
 
-### 2. Frontend (React)
+### 3. Set Environment Variables
+Create a `.env` file in the project root (or edit `docker-compose.yml`):
+```
+RAPIDAPI_KEY=your_rapidapi_key
+RAPIDAPI_HOST=booking-com15.p.rapidapi.com
+QDRANT_HOST=qdrant
+QDRANT_PORT=6333
+```
+
+### 4. Build and Start All Services
+```bash
+docker-compose up --build
+```
+- This will start:
+  - FastAPI backend (http://localhost:8000)
+  - React frontend (http://localhost:3000)
+  - Qdrant vector DB (http://localhost:6333)
+  - (Optional) Crawler service
+  - (Optional) Ollama LLM (if configured)
+
+### 5. Run the Crawler (Optional)
+To populate Qdrant with Wikipedia data:
+```bash
+docker-compose run --rm crawler
+```
+
+---
+
+## How to Use Individual Dockerfiles
+
+### Backend (FastAPI)
+```bash
+cd api
+# Build
+docker build -t travel-backend -f Dockerfile .
+# Run
+# (Set env vars as needed)
+docker run -p 8000:8000 --env-file ../.env travel-backend
+```
+
+### Frontend (React)
 ```bash
 cd client
-npm install
-npm start
+# Build
+docker build -t travel-frontend -f Dockerfile .
+# Run
+docker run -p 3000:80 travel-frontend
 ```
 
-### 3. Crawler (Optional, for Qdrant data)
+### Crawler
 ```bash
 cd crawler
-pip install -r requirements.txt
-python wiki_crawler.py
+# Build
+docker build -t travel-crawler -f Dockerfile .
+# Run
+docker run --env-file ../.env travel-crawler
 ```
 
 ---
 
-## Environment Variables
-- **Backend:**
+## Environment Variables (Docker)
+- Set in `.env` or directly in `docker-compose.yml`:
   - `RAPIDAPI_KEY` (Booking.com API key)
-  - `RAPIDAPI_HOST` (Booking.com API host, e.g. `booking-com15.p.rapidapi.com`)
-  - `QDRANT_HOST` (default: `localhost` or Docker service name)
+  - `RAPIDAPI_HOST` (Booking.com API host)
+  - `QDRANT_HOST` (should match Docker service name, e.g. `qdrant`)
   - `QDRANT_PORT` (default: `6333`)
-- **Frontend:**
-  - Set API base URL if deploying separately (see `.env` or config)
 
 ---
 
-## Free Deployment Tips
-- **Frontend:**
-  - [Vercel](https://vercel.com/) or [Netlify](https://netlify.com/) (connect your GitHub repo, set build dir to `client`)
-- **Backend:**
-  - [Render](https://render.com/) (free FastAPI hosting)
-  - [Railway](https://railway.app/) or [Fly.io](https://fly.io/) (free/cheap Python hosting)
+## Free Docker-Based Deployment Tips
+- **Backend/Frontend:**
+  - [Railway](https://railway.app/) (Dockerfile support)
+  - [Fly.io](https://fly.io/) (Dockerfile support)
+  - [Render](https://render.com/) (Dockerfile support)
 - **Qdrant:**
   - [Qdrant Cloud Free Tier](https://cloud.qdrant.io/)
 - **LLM:**
@@ -88,9 +129,9 @@ python wiki_crawler.py
 ## Project Structure
 ```
 Travel_RAG_Final/
-  api/app/         # FastAPI backend
-  client/          # React frontend
-  crawler/         # Wikipedia crawler for Qdrant
+  api/app/         # FastAPI backend (Dockerfile inside)
+  client/          # React frontend (Dockerfile inside)
+  crawler/         # Wikipedia crawler (Dockerfile inside)
   qdrant_data/     # Local Qdrant storage (if used)
   ollama_data/     # Ollama model data (if used)
   docker-compose.yml
@@ -99,12 +140,7 @@ Travel_RAG_Final/
 
 ---
 
-## Contributing
-Pull requests and issues are welcome! Please open an issue for bugs or feature requests.
-
----
-
-## Contact & Support
+## Contact & License
 - **Author:** [Your Name or GitHub]
 - **Email:** [your@email.com]
 - **Issues:** [GitHub Issues](https://github.com/your-repo/issues)
