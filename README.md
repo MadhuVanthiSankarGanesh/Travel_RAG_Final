@@ -108,18 +108,6 @@ docker run --env-file ../.env travel-crawler
 
 ---
 
-## Free Docker-Based Deployment Tips
-- **Backend/Frontend:**
-  - [Railway](https://railway.app/) (Dockerfile support)
-  - [Fly.io](https://fly.io/) (Dockerfile support)
-  - [Render](https://render.com/) (Dockerfile support)
-- **Qdrant:**
-  - [Qdrant Cloud Free Tier](https://cloud.qdrant.io/)
-- **LLM:**
-  - Ollama is not free-hostable; use [OpenRouter](https://openrouter.ai/) or mock for demo
-
----
-
 ## API Endpoints (Backend)
 - `POST /api/travel/generate-itinerary` — Generate itinerary, return flights/hotels
 - `POST /api/chat` — Chat about your trip
