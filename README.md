@@ -32,7 +32,7 @@ https://screenshots/plan-your-trip.png
 The itinerary planning interface where users can input their travel preferences and generate detailed day-by-day itineraries for Ireland.
 
 ### Chat Assistant Page
-https://screenshots/chat-assistant.png
+screenshots/chatpage.png
 The AI chat interface that allows users to ask follow-up questions about their generated travel itinerary and get personalized recommendations.
 
 ---
