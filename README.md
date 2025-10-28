@@ -32,7 +32,7 @@ https://screenshots/plan-your-trip.png
 The itinerary planning interface where users can input their travel preferences and generate detailed day-by-day itineraries for Ireland.
 
 ### Chat Assistant Page
-(screenshots/chatpage.png)
+(https://github.com/MadhuVanthiSankarGanesh/Travel_RAG_Final/blob/7dc2db1b56892839917e12f58098254472502695/screenshots/chatpage.png)
 The AI chat interface that allows users to ask follow-up questions about their generated travel itinerary and get personalized recommendations.
 
 ---
