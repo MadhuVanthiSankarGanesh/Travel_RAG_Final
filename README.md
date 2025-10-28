@@ -32,7 +32,7 @@ A full-stack AI-powered travel planning application for Ireland, containerized f
 The itinerary planning interface where users can input their travel preferences and generate detailed day-by-day itineraries for Ireland.
 
 ### Chat Assistant Page
-![Chat Page](screenshots/Screenshot 2025-10-28 210531.png)
+![Chat Page](screenshots/Screenshot2025-10-28210531.png)
 The AI chat interface that allows users to ask follow-up questions about their generated travel itinerary and get personalized recommendations.
 
 ---
