@@ -28,7 +28,7 @@ A full-stack AI-powered travel planning application for Ireland, containerized f
 ---
 ## Screenshots
 ### Plan Your Trip Page
-https://screenshots/plan-your-trip.png
+![PlanTrip](screenshots/planurtrippage.png)
 The itinerary planning interface where users can input their travel preferences and generate detailed day-by-day itineraries for Ireland.
 
 ### Chat Assistant Page
